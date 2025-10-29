@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lista de Presentes | Fulano & Fulana</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista de Presentes | Nasser & Mariana</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
+  <!-- Cabeçalho -->
   <header class="text-center py-8 bg-white shadow-md">
     <h1 class="text-3xl font-bold text-pink-700">🎁 Lista de Presentes</h1>
     <p class="text-gray-500 mt-1">Escolha um presente e envie seu carinho via Pix 💖</p>
   </header>
 
-  <main class="max-w-6xl mx-auto p-6 grid gap-6 sm:grid-cols-2 md:grid-cols-3" id="lista-presentes"></main>
+  <!-- Lista de Presentes -->
+  <main id="lista-presentes" class="max-w-6xl mx-auto p-6 grid gap-6 sm:grid-cols-2 md:grid-cols-3"></main>
 
   <!-- Modal Pix -->
-  <div id="modalPix" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+  <div id="modalPix" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
     <div class="bg-white p-6 rounded-2xl max-w-sm w-full relative shadow-lg">
       <button id="fecharModal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-700">✕</button>
       <h2 id="modalNome" class="text-xl font-semibold mb-2"></h2>
@@ -32,6 +34,70 @@
     <a href="index.html" class="underline text-pink-600 hover:text-pink-700">Voltar para a página inicial</a>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- Script Principal -->
+  <script>
+    // Dados dos presentes (substitui o JSON externo)
+    const presentes = [
+      {
+        id: 1,
+        nome: "Liquidificador",
+        valor: 250,
+        imagem: "img/presentes/liquidificador.jpg",
+        pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406250.005802BR5913Nasser Khalil6009SAO PAULO621405101tg68ZGE6l6304ECA2"
+      },
+      {
+        id: 2,
+        nome: "Jogo de Toalhas",
+        valor: 180,
+        imagem: "img/presentes/toalhas.jpg",
+        pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406250.005802BR5913Nasser Khalil6009SAO PAULO621405101tg68ZGE6l6304ECA2"
+      },
+      {
+        id: 3,
+        nome: "Aspirador de pó",
+        valor: 350,
+        imagem: "img/presentes/aspirador.jpg",
+        pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406250.005802BR5913Nasser Khalil6009SAO PAULO621405101tg68ZGE6l6304ECA2"
+      }
+    ];
+
+    // Renderizar os presentes
+    $(document).ready(function() {
+      const container = $("#lista-presentes");
+      presentes.forEach(p => {
+        container.append(`
+          <div class="bg-white rounded-2xl shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center">
+            <img src="${p.imagem}" alt="${p.nome}" class="w-full h-48 object-contain rounded-lg mb-4">
+            <h3 class="text-lg font-semibold mb-2">${p.nome}</h3>
+            <p class="text-pink-700 font-bold mb-3">R$ ${p.valor.toFixed(2)}</p>
+            <button class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-lg"
+                    onclick="abrirModal(${p.id})">Selecionar 🎁</button>
+          </div>
+        `);
+      });
+    });
+
+    // Abrir modal
+    function abrirModal(id) {
+      const presente = presentes.find(p => p.id === id);
+      $("#modalNome").text(presente.nome);
+      $("#modalValor").text(presente.valor.toFixed(2));
+      $("#codigoPix").val(presente.pix);
+      $("#modalPix").removeClass("hidden");
+    }
+
+    // Fechar modal
+    $("#fecharModal").on("click", function() {
+      $("#modalPix").addClass("hidden");
+    });
+
+    // Copiar código Pix
+    $("#copiarPix").on("click", function() {
+      $("#codigoPix").select();
+      document.execCommand("copy");
+      $(this).text("Copiado! ✅");
+      setTimeout(() => $(this).text("Copiar código Pix"), 2000);
+    });
+  </script>
 </body>
 </html>
