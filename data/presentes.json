@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nome": "Liquidificador",
+    "valor": 250,
+    "imagem": "img/presentes/liquidificador.jpg",
+    "pix": "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406250.005802BR5913Nasser Khalil6009SAO PAULO621405101tg68ZGE6l6304ECA2"
+  },
+  {
+    "id": 2,
+    "nome": "Jogo de Toalhas",
+    "valor": 180,
+    "imagem": "img/presentes/toalhas.jpg",
+    "pix": "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406250.005802BR5913Nasser Khalil6009SAO PAULO621405101tg68ZGE6l6304ECA2"
+  },
+  {
+    "id": 3,
+    "nome": "Aspirador de pó",
+    "valor": 350,
+    "imagem": "img/presentes/aspirador.jpg",
+    "pix": "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406250.005802BR5913Nasser Khalil6009SAO PAULO621405101tg68ZGE6l6304ECA2"
+  }
+]
