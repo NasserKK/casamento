@@ -15,6 +15,14 @@
     <p class="text-gray-500 mt-1">Escolha um presente e envie seu carinho via Pix 💖</p>
   </header>
 
+  <section class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 px-6 mt-6">
+    <p class="text-gray-700 font-medium">Filtrar por preço:</p>
+    <div class="flex gap-3">
+      <button id="sortAsc" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-lg shadow">Crescente ⬆️</button>
+      <button id="sortDesc" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-lg shadow">Decrescente ⬇️</button>
+    </div>
+  </section>
+  
   <!-- Lista de Presentes -->
   <main id="lista-presentes" class="max-w-6xl mx-auto p-6 grid gap-6 sm:grid-cols-2 md:grid-cols-3"></main>
 
@@ -310,6 +318,22 @@
       $("#codigoPix").val(presente.pix);
       $("#modalPix").removeClass("hidden");
     }
+    
+    // Inicializa a lista
+    $(document).ready(function() {
+      renderizarPresentes(presentes);
+
+      // Ordenar por preço
+      $("#sortAsc").click(function() {
+        const listaOrdenada = [...presentes].sort((a, b) => a.valor - b.valor);
+        renderizarPresentes(listaOrdenada);
+      });
+
+      $("#sortDesc").click(function() {
+        const listaOrdenada = [...presentes].sort((a, b) => b.valor - a.valor);
+        renderizarPresentes(listaOrdenada);
+      });
+    });
 
     // Fechar modal
     $("#fecharModal").on("click", function() {
