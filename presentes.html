@@ -38,28 +38,253 @@
   <script>
     // Dados dos presentes (substitui o JSON externo)
     const presentes = [
-      {
-        id: 1,
-        nome: "Liquidificador",
-        valor: 250,
-        imagem: "img/presentes/liquidificador.jpg",
-        pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406250.005802BR5913Nasser Khalil6009SAO PAULO621405101tg68ZGE6l6304ECA2"
-      },
-      {
-        id: 2,
-        nome: "Jogo de Toalhas",
-        valor: 180,
-        imagem: "img/presentes/toalhas.jpg",
-        pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406250.005802BR5913Nasser Khalil6009SAO PAULO621405101tg68ZGE6l6304ECA2"
-      },
-      {
-        id: 3,
-        nome: "Aspirador de pó",
-        valor: 350,
-        imagem: "img/presentes/aspirador.jpg",
-        pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406250.005802BR5913Nasser Khalil6009SAO PAULO621405101tg68ZGE6l6304ECA2"
-      }
-    ];
+  {
+    id: 35,
+    nome: "Aspirador robô básico",
+    valor: 1899.00,
+    imagem: "img/presentes/aspirador-robo.jpg",
+    pix: ""
+  },
+  {
+    id: 8,
+    nome: "Batedeira planetária 4L (doméstica)",
+    valor: 899.00,
+    imagem: "img/presentes/batedeira.jpg",
+    pix: ""
+  },
+  {
+    id: 5,
+    nome: "Conjunto de panelas inox 5 peças – fundo triplo",
+    valor: 649.00,
+    imagem: "img/presentes/panelas-inox.jpg",
+    pix: ""
+  },
+  {
+    id: 28,
+    nome: "Espelho de parede com moldura 60×80 cm",
+    valor: 479.00,
+    imagem: "img/presentes/espelho.jpg",
+    pix: ""
+  },
+  {
+    id: 14,
+    nome: "Tapete de sala 2×3 m (fibra sintética)",
+    valor: 499.00,
+    imagem: "img/presentes/tapete.jpg",
+    pix: ""
+  },
+  {
+    id: 16,
+    nome: "Luminária de chão minimalista",
+    valor: 419.00,
+    imagem: "img/presentes/luminaria-chao.jpg",
+    pix: ""
+  },
+  {
+    id: 6,
+    nome: "Caçarola de ferro fundido 28 cm",
+    valor: 429.00,
+    imagem: "img/presentes/cacarola.jpg",
+    pix: ""
+  },
+  {
+    id: 9,
+    nome: "Cafeteira expresso elétrica (doméstica, cápsulas)",
+    valor: 399.00,
+    imagem: "img/presentes/cafeteira.jpg",
+    pix: ""
+  },
+  {
+    id: 22,
+    nome: "Air fryer 3,2 L",
+    valor: 399.00,
+    imagem: "img/presentes/airfryer.jpg",
+    pix: ""
+  },
+  {
+    id: 11,
+    nome: "Jogo de lençóis casal 300 fios – 4 peças",
+    valor: 379.00,
+    imagem: "img/presentes/lencois.jpg",
+    pix: ""
+  },
+  {
+    id: 25,
+    nome: "Jogo de panelas esmaltadas (3 peças)",
+    valor: 349.00,
+    imagem: "img/presentes/panelas-esmaltadas.jpg",
+    pix: ""
+  },
+  {
+    id: 3,
+    nome: "Jogo de talheres 24 peças – inox polido",
+    valor: 199.90,
+    imagem: "img/presentes/talheres.jpg",
+    pix: ""
+  },
+  {
+    id: 20,
+    nome: "Processador/Multiprocessador (compacto)",
+    valor: 329.00,
+    imagem: "img/presentes/processador.jpg",
+    pix: ""
+  },
+  {
+    id: 13,
+    nome: "Conjunto de toalhas banho (4 peças, luxo)",
+    valor: 329.00,
+    imagem: "img/presentes/toalhas-luxo.jpg",
+    pix: ""
+  },
+  {
+    id: 12,
+    nome: "Edredom casal 1 peça (anti-alérgico)",
+    valor: 289.00,
+    imagem: "img/presentes/edredom.jpg",
+    pix: ""
+  },
+  {
+    id: 19,
+    nome: "Liquidificador potente 1,5L",
+    valor: 249.90,
+    imagem: "img/presentes/liquidificador.jpg",
+    pix: ""
+  },
+  {
+    id: 4,
+    nome: "Jogo de pratos de porcelana 20 peças (serviço 4 pessoas)",
+    valor: 249.00,
+    imagem: "img/presentes/pratos.jpg",
+    pix: ""
+  },
+  {
+    id: 26,
+    nome: "Conjunto de facas de cozinha (6 peças com bloco)",
+    valor: 239.90,
+    imagem: "img/presentes/facas.jpg",
+    pix: ""
+  },
+  {
+    id: 23,
+    nome: "Grill elétrico tipo sanduicheira/press",
+    valor: 219.90,
+    imagem: "img/presentes/grill.jpg",
+    pix: ""
+  },
+  {
+    id: 34,
+    nome: "Ferro a vapor vertical (steamer) portátil",
+    valor: 189.90,
+    imagem: "img/presentes/ferro-steamer.jpg",
+    pix: ""
+  },
+  {
+    id: 21,
+    nome: "Panela elétrica de arroz (4 xícaras)",
+    valor: 179.90,
+    imagem: "img/presentes/panela-arroz.jpg",
+    pix: ""
+  },
+  {
+    id: 29,
+    nome: "Kit para churrasco (10 peças com estojo)",
+    valor: 179.90,
+    imagem: "img/presentes/churrasco.jpg",
+    pix: ""
+  },
+  {
+    id: 15,
+    nome: "Luminária de mesa design (LED)",
+    valor: 169.90,
+    imagem: "img/presentes/luminaria-mesa.jpg",
+    pix: ""
+  },
+  {
+    id: 27,
+    nome: "Relógio de parede decorativo grande",
+    valor: 159.90,
+    imagem: "img/presentes/relogio.jpg",
+    pix: ""
+  },
+  {
+    id: 18,
+    nome: "Kit de potes herméticos para mantimentos (12 peças)",
+    valor: 159.90,
+    imagem: "img/presentes/potes.jpg",
+    pix: ""
+  },
+  {
+    id: 32,
+    nome: "Difusor/umidificador de ambientes (ultrassônico)",
+    valor: 149.90,
+    imagem: "img/presentes/difusor.jpg",
+    pix: ""
+  },
+  {
+    id: 10,
+    nome: "Torradeira elétrica 2 fatias",
+    valor: 149.90,
+    imagem: "img/presentes/torradeira.jpg",
+    pix: ""
+  },
+  {
+    id: 31,
+    nome: "Conjunto de copos para uísque (4 un.) com pedras de resfriamento",
+    valor: 129.90,
+    imagem: "img/presentes/copos-whisky.jpg",
+    pix: ""
+  },
+  {
+    id: 24,
+    nome: "Conjunto de travessas de vidro temperado (3 peças)",
+    valor: 129.90,
+    imagem: "img/presentes/travessas.jpg",
+    pix: ""
+  },
+  {
+    id: 2,
+    nome: "Conjunto de taças de vinho (6 un.) – cristal básico",
+    valor: 129.90,
+    imagem: "img/presentes/tacas-vinho.jpg",
+    pix: ""
+  },
+  {
+    id: 30,
+    nome: "Chaleira elétrica inox 1,7 L",
+    valor: 119.90,
+    imagem: "img/presentes/chaleira.jpg",
+    pix: ""
+  },
+  {
+    id: 7,
+    nome: "Frigideira antiaderente 26 cm (marca conhecida)",
+    valor: 119.90,
+    imagem: "img/presentes/frigideira.jpg",
+    pix: ""
+  },
+  {
+    id: 17,
+    nome: "Conjunto de organizadores para armário (5 peças)",
+    valor: 89.90,
+    imagem: "img/presentes/organizadores.jpg",
+    pix: ""
+  },
+  {
+    id: 33,
+    nome: "Conjunto de velas aromáticas (6 un.) com caixa",
+    valor: 79.90,
+    imagem: "img/presentes/velas.jpg",
+    pix: ""
+  },
+  {
+    id: 1,
+    nome: "Jogo de copos para água (6 un.) – conjunto simples cristal",
+    valor: 59.90,
+    imagem: "img/presentes/copos-agua.jpg",
+    pix: ""
+  }
+];
+
 
     // Renderizar os presentes
     $(document).ready(function() {
