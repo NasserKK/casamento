@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +8,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 <body class="bg-gray-50 text-gray-800">
 
   <!-- Cabeçalho -->
@@ -19,11 +21,13 @@
   <section class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 px-6 mt-6">
     <p class="text-gray-700 font-medium">Filtrar por preço:</p>
     <div class="flex gap-3">
-      <button id="sortAsc" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-lg shadow">Crescente ⬆️</button>
-      <button id="sortDesc" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-lg shadow">Decrescente ⬇️</button>
+      <button id="sortAsc" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-lg shadow">Crescente
+        ⬆️</button>
+      <button id="sortDesc" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-lg shadow">Decrescente
+        ⬇️</button>
     </div>
   </section>
-  
+
   <!-- Lista de Presentes -->
   <main id="lista-presentes" class="max-w-6xl mx-auto p-6 grid gap-6 sm:grid-cols-2 md:grid-cols-3"></main>
 
@@ -35,7 +39,8 @@
       <p class="text-gray-600 mb-4">Valor: R$ <span id="modalValor"></span></p>
       <p class="text-sm text-gray-500 mb-2">Pix copia e cola:</p>
       <textarea id="codigoPix" readonly class="w-full border p-2 text-sm rounded bg-gray-50"></textarea>
-      <button id="copiarPix" class="mt-3 w-full bg-pink-600 hover:bg-pink-700 text-white py-2 rounded-lg">Copiar código Pix</button>
+      <button id="copiarPix" class="mt-3 w-full bg-pink-600 hover:bg-pink-700 text-white py-2 rounded-lg">Copiar código
+        Pix</button>
     </div>
   </div>
 
@@ -45,273 +50,62 @@
 
   <!-- Script Principal -->
   <script>
-    // Dados dos presentes (substitui o JSON externo)
     const presentes = [
-  {
-    id: 35,
-    nome: "Televisão 4k",
-    valor: 1899.00,
-    imagem: "img/presentes/tv.jpg",
-    pix: ""
-  },
-  {
-    id: 8,
-    nome: "Batedeira planetária 4L (doméstica)",
-    valor: 899.00,
-    imagem: "img/presentes/batedeira.jpg",
-    pix: ""
-  },
-  {
-    id: 5,
-    nome: "Conjunto de panelas inox 5 peças – fundo triplo",
-    valor: 649.00,
-    imagem: "img/presentes/panelas-inox.jpg",
-    pix: ""
-  },
-  {
-    id: 28,
-    nome: "Espelho de parede com moldura 60×80 cm",
-    valor: 479.00,
-    imagem: "img/presentes/espelho.jpg",
-    pix: ""
-  },
-  {
-    id: 14,
-    nome: "Tapete de sala 2×3 m (fibra sintética)",
-    valor: 499.00,
-    imagem: "img/presentes/tapete.jpg",
-    pix: ""
-  },
-  {
-    id: 16,
-    nome: "Luminária de chão minimalista",
-    valor: 419.00,
-    imagem: "img/presentes/luminaria.jpg",
-    pix: ""
-  },
-  {
-    id: 6,
-    nome: "Caçarola de ferro fundido 28 cm",
-    valor: 429.00,
-    imagem: "img/presentes/cacarola.jpg",
-    pix: ""
-  },
-  {
-    id: 9,
-    nome: "Cafeteira expresso elétrica (doméstica, cápsulas)",
-    valor: 399.00,
-    imagem: "img/presentes/cafeteira.jpg",
-    pix: ""
-  },
-  {
-    id: 22,
-    nome: "Air fryer 3,2 L",
-    valor: 399.00,
-    imagem: "img/presentes/airfryer.jpg",
-    pix: ""
-  },
-  {
-    id: 11,
-    nome: "Jogo de lençóis casal 300 fios – 4 peças",
-    valor: 379.00,
-    imagem: "img/presentes/lencois.jpg",
-    pix: ""
-  },
-  {
-    id: 25,
-    nome: "Jogo de panelas esmaltadas (3 peças)",
-    valor: 349.00,
-    imagem: "img/presentes/panelas-esmaltadas.jpg",
-    pix: ""
-  },
-  {
-    id: 3,
-    nome: "Jogo de talheres 24 peças – inox polido",
-    valor: 199.90,
-    imagem: "img/presentes/talheres.jpg",
-    pix: ""
-  },
-  {
-    id: 20,
-    nome: "Processador/Multiprocessador (compacto)",
-    valor: 329.00,
-    imagem: "img/presentes/processador.jpg",
-    pix: ""
-  },
-  {
-    id: 13,
-    nome: "Conjunto de toalhas banho (4 peças, luxo)",
-    valor: 329.00,
-    imagem: "img/presentes/toalhas.jpg",
-    pix: ""
-  },
-  {
-    id: 12,
-    nome: "Edredom casal 1 peça (anti-alérgico)",
-    valor: 289.00,
-    imagem: "img/presentes/edredon.jpg",
-    pix: ""
-  },
-  {
-    id: 19,
-    nome: "Liquidificador potente 1,5L",
-    valor: 249.90,
-    imagem: "img/presentes/liquidificador.jpg",
-    pix: ""
-  },
-  {
-    id: 4,
-    nome: "Jogo de pratos de porcelana 20 peças (serviço 4 pessoas)",
-    valor: 249.00,
-    imagem: "img/presentes/pratos.jpg",
-    pix: ""
-  },
-  {
-    id: 26,
-    nome: "Conjunto de facas de cozinha (6 peças com bloco)",
-    valor: 239.90,
-    imagem: "img/presentes/facas.jpg",
-    pix: ""
-  },
-  {
-    id: 23,
-    nome: "Grill elétrico tipo sanduicheira/press",
-    valor: 219.90,
-    imagem: "img/presentes/grill.jpg",
-    pix: ""
-  },
-  {
-    id: 34,
-    nome: "Ferro a vapor vertical (steamer) portátil",
-    valor: 189.90,
-    imagem: "img/presentes/ferro-steamer.jpg",
-    pix: ""
-  },
-  {
-    id: 21,
-    nome: "Panela elétrica de arroz (4 xícaras)",
-    valor: 179.90,
-    imagem: "img/presentes/panela-arroz.jpg",
-    pix: ""
-  },
-  {
-    id: 29,
-    nome: "Kit para churrasco (10 peças com estojo)",
-    valor: 179.90,
-    imagem: "img/presentes/churrasco.jpg",
-    pix: ""
-  },
-  {
-    id: 15,
-    nome: "Luminária de mesa design (LED)",
-    valor: 169.90,
-    imagem: "img/presentes/luminaria-mesa.jpg",
-    pix: ""
-  },
-  {
-    id: 27,
-    nome: "Relógio de parede decorativo grande",
-    valor: 159.90,
-    imagem: "img/presentes/relogio.jpg",
-    pix: ""
-  },
-  {
-    id: 18,
-    nome: "Kit de potes herméticos para mantimentos (12 peças)",
-    valor: 159.90,
-    imagem: "img/presentes/potes.jpg",
-    pix: ""
-  },
-  {
-    id: 32,
-    nome: "Difusor/umidificador de ambientes (ultrassônico)",
-    valor: 149.90,
-    imagem: "img/presentes/difusor.jpg",
-    pix: ""
-  },
-  {
-    id: 10,
-    nome: "Torradeira elétrica 2 fatias",
-    valor: 149.90,
-    imagem: "img/presentes/torradeira.jpg",
-    pix: ""
-  },
-  {
-    id: 31,
-    nome: "Conjunto de copos para uísque (4 un.) com pedras de resfriamento",
-    valor: 129.90,
-    imagem: "img/presentes/whisky.jpg",
-    pix: ""
-  },
-  {
-    id: 24,
-    nome: "Conjunto de travessas de vidro temperado (3 peças)",
-    valor: 129.90,
-    imagem: "img/presentes/travessas.jpg",
-    pix: ""
-  },
-  {
-    id: 2,
-    nome: "Conjunto de taças de vinho (6 un.) – cristal básico",
-    valor: 129.90,
-    imagem: "img/presentes/tacas.jpg",
-    pix: ""
-  },
-  {
-    id: 30,
-    nome: "Chaleira elétrica inox 1,7 L",
-    valor: 119.90,
-    imagem: "img/presentes/chaleira.jpg",
-    pix: ""
-  },
-  {
-    id: 7,
-    nome: "Frigideira antiaderente 26 cm (marca conhecida)",
-    valor: 119.90,
-    imagem: "img/presentes/frigideira.jpg",
-    pix: ""
-  },
-  {
-    id: 17,
-    nome: "Conjunto de organizadores para armário (5 peças)",
-    valor: 89.90,
-    imagem: "img/presentes/organizadors.jpg",
-    pix: ""
-  },
-  {
-    id: 33,
-    nome: "Conjunto de velas aromáticas (6 un.) com caixa",
-    valor: 79.90,
-    imagem: "img/presentes/velas.jpg",
-    pix: ""
-  },
-  {
-    id: 1,
-    nome: "Jogo de copos para água (6 un.) – conjunto simples cristal",
-    valor: 59.90,
-    imagem: "img/presentes/copos.jpg",
-    pix: ""
-  }
-];
+      { id: 35, nome: "Televisão 4k", valor: 1899.00, imagem: "img/presentes/tv.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com52040000530398654071899.005802BR5913Nasser Khalil6009SAO PAULO6214051074kt6DNYoJ6304803D" },
+      { id: 8, nome: "Batedeira planetária 4L (doméstica)", valor: 899.00, imagem: "img/presentes/batedeira.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406899.005802BR5913Nasser Khalil6009SAO PAULO62140510dTeVzRjX5V6304C82D" },
+      { id: 5, nome: "Conjunto de panelas inox 5 peças – fundo triplo", valor: 649.00, imagem: "img/presentes/panelas-inox.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406649.005802BR5913Nasser Khalil6009SAO PAULO62140510CJqhWQLP8n63042130" },
+      { id: 28, nome: "Espelho de parede com moldura 60×80 cm", valor: 479.00, imagem: "img/presentes/espelho.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406479.005802BR5913Nasser Khalil6009SAO PAULO62140510OoRCAFrSgO6304CBA9" },
+      { id: 14, nome: "Tapete de sala 2×3 m (fibra sintética)", valor: 499.00, imagem: "img/presentes/tapete.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406499.005802BR5913Nasser Khalil6009SAO PAULO62140510fUKvi6DsKu6304D6D7" },
+      { id: 16, nome: "Luminária de chão minimalista", valor: 419.00, imagem: "img/presentes/luminaria.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406419.005802BR5913Nasser Khalil6009SAO PAULO62140510dh2EaqUk2y630428B0" },
+      { id: 6, nome: "Caçarola de ferro fundido 28 cm", valor: 419.00, imagem: "img/presentes/cacarola.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406419.005802BR5913Nasser Khalil6009SAO PAULO62140510dh2EaqUk2y630428B0" },
+      { id: 9, nome: "Cafeteira expresso elétrica (doméstica, cápsulas)", valor: 399.00, imagem: "img/presentes/cafeteira.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406399.005802BR5913Nasser Khalil6009SAO PAULO62140510FoAAXBP7j9630430EE" },
+      { id: 22, nome: "Air fryer 3,2 L", valor: 399.00, imagem: "img/presentes/airfryer.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406399.005802BR5913Nasser Khalil6009SAO PAULO62140510FoAAXBP7j9630430EE" },
+      { id: 11, nome: "Jogo de lençóis casal 300 fios – 4 peças", valor: 379.00, imagem: "img/presentes/lencois.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406379.005802BR5913Nasser Khalil6009SAO PAULO62140510y5LXVfQv4D63041C2A" },
+      { id: 25, nome: "Jogo de panelas esmaltadas (3 peças)", valor: 349.00, imagem: "img/presentes/panelas-esmaltadas.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406349.005802BR5913Nasser Khalil6009SAO PAULO62140510Bs6AdjI4JM6304434E" },
+      { id: 3, nome: "Jogo de talheres 24 peças – inox polido", valor: 199.90, imagem: "img/presentes/talheres.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406199.005802BR5913Nasser Khalil6009SAO PAULO62140510IhfcMjZWbP6304E74D" },
+      { id: 20, nome: "Processador/Multiprocessador (compacto)", valor: 329.00, imagem: "img/presentes/processador.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406329.005802BR5913Nasser Khalil6009SAO PAULO62140510S5NBrJNAUO63044586" },
+      { id: 13, nome: "Conjunto de toalhas banho (4 peças, luxo)", valor: 329.00, imagem: "img/presentes/toalhas.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406329.005802BR5913Nasser Khalil6009SAO PAULO62140510S5NBrJNAUO63044586" },
+      { id: 12, nome: "Edredom casal 1 peça (anti-alérgico)", valor: 289.00, imagem: "img/presentes/edredon.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406289.005802BR5913Nasser Khalil6009SAO PAULO62140510b3pTELqx0g63047167" },
+      { id: 19, nome: "Liquidificador potente 1,5L", valor: 249.90, imagem: "img/presentes/liquidificador.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406249.005802BR5913Nasser Khalil6009SAO PAULO62140510SSDlxqdy1363046415" },
+      { id: 4, nome: "Jogo de pratos de porcelana 20 peças (serviço 4 pessoas)", valor: 249.00, imagem: "img/presentes/pratos.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406249.005802BR5913Nasser Khalil6009SAO PAULO62140510SSDlxqdy1363046415" },
+      { id: 26, nome: "Conjunto de facas de cozinha (6 peças com bloco)", valor: 249.90, imagem: "img/presentes/facas.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406249.005802BR5913Nasser Khalil6009SAO PAULO62140510SSDlxqdy1363046415" },
+      { id: 23, nome: "Grill elétrico tipo sanduicheira/press", valor: 219.90, imagem: "img/presentes/grill.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406219.005802BR5913Nasser Khalil6009SAO PAULO62140510YjPmwa1D5F6304BFFA" },
+      { id: 34, nome: "Ferro a vapor vertical (steamer) portátil", valor: 189.90, imagem: "img/presentes/ferro-steamer.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406189.005802BR5913Nasser Khalil6009SAO PAULO621405104fGwLW1tqt630479C6" },
+      { id: 21, nome: "Panela elétrica de arroz (4 xícaras)", valor: 179.90, imagem: "img/presentes/panela-arroz.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406179.005802BR5913Nasser Khalil6009SAO PAULO62140510z0eHtIihWM6304E2DC" },
+      { id: 29, nome: "Kit para churrasco (10 peças com estojo)", valor: 179.90, imagem: "img/presentes/churrasco.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406179.005802BR5913Nasser Khalil6009SAO PAULO62140510z0eHtIihWM6304E2DC" },
+      { id: 15, nome: "Luminária de mesa design (LED)", valor: 169.90, imagem: "img/presentes/luminaria-mesa.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406169.905802BR5913Nasser Khalil6009SAO PAULO621405107j17eIvRHE6304F4F3" },
+      { id: 27, nome: "Relógio de parede decorativo grande", valor: 159.90, imagem: "img/presentes/relogio.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406159.905802BR5913Nasser Khalil6009SAO PAULO62140510IPmyUy1S9R6304B27D" },
+      { id: 18, nome: "Kit de potes herméticos para mantimentos (12 peças)", valor: 159.90, imagem: "img/presentes/potes.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406159.905802BR5913Nasser Khalil6009SAO PAULO62140510IPmyUy1S9R6304B27D" },
+      { id: 32, nome: "Difusor/umidificador de ambientes (ultrassônico)", valor: 149.90, imagem: "img/presentes/difusor.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406149.905802BR5913Nasser Khalil6009SAO PAULO62140510aGixSHCMsy6304809A" },
+      { id: 10, nome: "Torradeira elétrica 2 fatias", valor: 149.90, imagem: "img/presentes/torradeira.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406149.905802BR5913Nasser Khalil6009SAO PAULO62140510aGixSHCMsy6304809A" },
+      { id: 31, nome: "Conjunto de copos para uísque (4 un.) com pedras de resfriamento", valor: 129.90, imagem: "img/presentes/whisky.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406129.905802BR5913Nasser Khalil6009SAO PAULO62140510YJsJxTwAQ763043986" },
+      { id: 24, nome: "Conjunto de travessas de vidro temperado (3 peças)", valor: 129.90, imagem: "img/presentes/travessas.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406129.905802BR5913Nasser Khalil6009SAO PAULO62140510YJsJxTwAQ763043986" },
+      { id: 2, nome: "Conjunto de taças de vinho (6 un.) – cristal básico", valor: 129.90, imagem: "img/presentes/tacas.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406129.905802BR5913Nasser Khalil6009SAO PAULO62140510YJsJxTwAQ763043986" },
+      { id: 30, nome: "Chaleira elétrica inox 1,7 L", valor: 119.90, imagem: "img/presentes/chaleira.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406119.905802BR5913Nasser Khalil6009SAO PAULO62140510c9dcHrnKzW63042276" },
+      { id: 7, nome: "Frigideira antiaderente 26 cm (marca conhecida)", valor: 119.90, imagem: "img/presentes/frigideira.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com5204000053039865406119.905802BR5913Nasser Khalil6009SAO PAULO62140510c9dcHrnKzW63042276" },
+      { id: 17, nome: "Conjunto de organizadores para armário (5 peças)", valor: 89.90, imagem: "img/presentes/organizadors.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com520400005303986540589.905802BR5913Nasser Khalil6009SAO PAULO62140510LR9j9TGiVq63042192" },
+      { id: 33, nome: "Conjunto de velas aromáticas (6 un.) com caixa", valor: 79.90, imagem: "img/presentes/velas.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com520400005303986540579.905802BR5913Nasser Khalil6009SAO PAULO621405108fGMVAIziq6304C3C7" },
+      { id: 1, nome: "Jogo de copos para água (6 un.) – conjunto simples cristal", valor: 59.90, imagem: "img/presentes/copos.jpg", pix: "00020126550014BR.GOV.BCB.PIX0133casamentonasseremariana@gmail.com520400005303986540559.905802BR5913Nasser Khalil6009SAO PAULO62140510KGrvSx0doj63047E6E" }
+    ];
 
-
-    // Renderizar os presentes
-    $(document).ready(function() {
+    // Função que realmente desenha os presentes
+    function renderizarPresentes(lista) {
       const container = $("#lista-presentes");
-      presentes.forEach(p => {
+      container.empty();
+      lista.forEach(p => {
         container.append(`
-          <div class="bg-white rounded-2xl shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center">
-            <img src="${p.imagem}" alt="${p.nome}" class="w-full h-48 object-contain rounded-lg mb-4">
-            <h3 class="text-lg font-semibold mb-2">${p.nome}</h3>
-            <p class="text-pink-700 font-bold mb-3">R$ ${p.valor.toFixed(2)}</p>
-            <button class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-lg"
-                    onclick="abrirModal(${p.id})">Selecionar 🎁</button>
-          </div>
-        `);
+        <div class="bg-white rounded-2xl shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center">
+          <img src="${p.imagem}" alt="${p.nome}" class="w-full h-48 object-contain rounded-lg mb-4">
+          <h3 class="text-lg font-semibold mb-2">${p.nome}</h3>
+          <p class="text-pink-700 font-bold mb-3">R$ ${p.valor.toFixed(2)}</p>
+          <button class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-lg"
+                  onclick="abrirModal(${p.id})">Selecionar 🎁</button>
+        </div>
+      `);
       });
-    });
+    }
 
-    // Abrir modal
+    // Função do modal
     function abrirModal(id) {
       const presente = presentes.find(p => p.id === id);
       $("#modalNome").text(presente.nome);
@@ -319,35 +113,34 @@
       $("#codigoPix").val(presente.pix);
       $("#modalPix").removeClass("hidden");
     }
-    
-    // Inicializa a lista
-    $(document).ready(function() {
+
+    // Inicialização e filtros
+    $(document).ready(function () {
       renderizarPresentes(presentes);
 
-      // Ordenar por preço
-      $("#sortAsc").click(function() {
+      $("#sortAsc").click(function () {
         const listaOrdenada = [...presentes].sort((a, b) => a.valor - b.valor);
         renderizarPresentes(listaOrdenada);
       });
 
-      $("#sortDesc").click(function() {
+      $("#sortDesc").click(function () {
         const listaOrdenada = [...presentes].sort((a, b) => b.valor - a.valor);
         renderizarPresentes(listaOrdenada);
       });
-    });
 
-    // Fechar modal
-    $("#fecharModal").on("click", function() {
-      $("#modalPix").addClass("hidden");
-    });
+      $("#fecharModal").on("click", function () {
+        $("#modalPix").addClass("hidden");
+      });
 
-    // Copiar código Pix
-    $("#copiarPix").on("click", function() {
-      $("#codigoPix").select();
-      document.execCommand("copy");
-      $(this).text("Copiado! ✅");
-      setTimeout(() => $(this).text("Copiar código Pix"), 2000);
+      $("#copiarPix").on("click", function () {
+        $("#codigoPix").select();
+        document.execCommand("copy");
+        $(this).text("Copiado! ✅");
+        setTimeout(() => $(this).text("Copiar código Pix"), 2000);
+      });
     });
   </script>
+
 </body>
+
 </html>
